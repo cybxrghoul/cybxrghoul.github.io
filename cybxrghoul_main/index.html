@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CybxrGhoul</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <!-- Theme Switch Button -->
+  <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+  <div id="tsparticles"></div>
+
+  <nav>
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="tryhackme-writeups.html">TryHackMe_Writeups</a></li>
+      <li><a href="tools.html">Tools</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1 class="glitch">CybxrGhoul | <br>Welcome to the Cybersecurity Page</h1>
+    <p>Blog | Write-ups | Hands-on | Tools |  </p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Welcome</h2>
+      <p>This is your digital space for professional cybersecurity showcases, TryHackMe writeups, and tutorials on tools like Nmap. Click sections above to explore!</p>
+    </section>
+    <section>
+      <h2>Latest Updates</h2>
+      <article>
+        <h3>Getting Started in Cybersecurity</h3>
+        <p>This platform will soon include detailed walkthroughs, cheat sheets, and more.</p>
+      </article>
+    </section>
+  </main>
+  
+
+  <footer>
+       <p>&copy; 2025 CybxrGhoul | A Cyber Space</p>
+  </footer>
+
+<script>
+const toggle = document.getElementById('theme-toggle');
+
+// Apply saved theme on page load
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'light') {
+  document.body.setAttribute('data-theme', 'light');
+  toggle.textContent = '🌞';
+} else {
+  document.body.removeAttribute('data-theme');
+  toggle.textContent = '🌚';
+}
+
+// Listen for toggle button click
+toggle.onclick = () => {
+  if (!document.body.hasAttribute('data-theme')) {
+    document.body.setAttribute('data-theme', 'light');
+    localStorage.setItem('theme', 'light');
+    toggle.textContent = '🌞';
+  } else {
+    document.body.removeAttribute('data-theme');
+    localStorage.setItem('theme', 'dark');
+    toggle.textContent = '🌚';
+  }
+};
+</script>
+
+<!-- tsParticles library (CDN) -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@3.1.0/tsparticles.bundle.min.js"></script>
+<script>
+tsParticles.load("tsparticles", {
+  fullScreen: {
+    enable: true,
+    zIndex: -1
+  },
+  particles: {
+    number: { value: 40 },
+    color: { value: ["#39ff14", "#00fff7", "#f500a5"] },
+    shape: { type: "circle" },
+    opacity: { value: 0.56, random: true },
+    size: { value: 4, random: true },
+    move: {
+      direction: "none",
+      enable: true,
+      outModes: "bounce",
+      speed: 1.4
+    }
+  },
+  background: {
+    color: {
+      value: "transparent"
+    }
+  },
+});
+</script>
+
+</body>
+</html>

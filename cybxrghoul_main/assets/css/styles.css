@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+/* ---- THEME VARIABLES ---- */
+:root {
+  --bg: #101319;
+  --bg-card: #0f1014;
+  --accent: #39ff14;
+  --accent-alt: #00fff7;
+  --headline: #39ff14;
+  --headline-shadow: #39ff148a;
+  --text: #e3e6ff;
+  --text-sub: #00fff7;
+  --section: #00fff7;
+  --footer: #3cd2c4;
+  --link: #00fff7;
+  --link-hover: #39ff14;
+  --code-bg: #191f24;
+  --code: #39ff14;
+}
+
+/* Light Theme (Day Cyberpunk) */
+[data-theme="light"] {
+  --bg: #f2f7fa;                /* Soft but not pure white */
+  --bg-card: #f8fafc;            /* Slightly off-white for cards */
+  --accent: #00e6b2;             /* Neon teal/green accent */
+  --accent-alt: #f500a5;         /* Vivid magenta for hover */
+  --headline: #313276;           /* Dark blue-violet for professionalism */
+  --headline-shadow: #90f3ea99;  /* Subtle teal-glow for headings */
+  --text: #1a1a25;               /* Clean, dark, easy text */
+  --text-sub: #f500a5;           /* Magenta for pop */
+  --section: #02c5ff;            /* Cyberpunk blue for section titles */
+  --footer: #02c5ff;
+  --link: #f500a5;               /* Magenta link */
+  --link-hover: #00e6b2;         /* Teal hover */
+  --code-bg: #e0eafe;            /* Blue-tint code blocks */
+  --code: #f500a5;               /* Neon magenta text for code */
+}
+
+
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Share Tech Mono', monospace;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  letter-spacing: 0.045em;
+  transition: background 0.4s, color 0.4s;
+}
+
+#theme-toggle {
+  position: fixed;
+  top: 22px;
+  right: 32px;
+  z-index: 1000;
+  font-size: 2em;
+  background: #232536;
+  border: 2px solid var(--accent);
+  color: var(--accent-alt);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  box-shadow: 0 0 12px var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+#theme-toggle:hover {
+  background: var(--accent-alt);
+  color: #232536;
+  border-color: var(--accent);
+  box-shadow: 0 0 16px var(--accent-alt);
+}
+
+@media (max-width: 700px) {
+  #theme-toggle {
+    right: 14px;
+    top: 14px;
+    font-size: 1.5em;
+    width: 38px;
+    height: 38px;
+  }
+}
+
+nav {
+  background: var(--bg-card);
+  padding: 1.25em 0;
+  border-bottom: 2px solid var(--accent);
+  display: flex;
+  justify-content: center;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2.5em;
+  margin: 0;
+  padding: 0;
+}
+nav ul li a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.12em;
+  border-bottom: 2px solid transparent;
+  padding: 4px 2px;
+  transition: color 0.18s, border-bottom 0.18s;
+}
+nav ul li a:hover, nav ul li a.active {
+  color: var(--accent-alt);
+  border-bottom: 2px solid var(--accent-alt);
+}
+
+header, main, footer {
+  max-width: 760px;
+  margin: 2.7em auto;
+  padding: 0 1.3em;
+}
+
+header h1, h1.neon {
+  color: var(--headline);
+  font-size: 2.45em;
+  font-weight: 700;
+  letter-spacing: 0.085em;
+  text-shadow: 0 0 8px var(--headline-shadow);
+  transition: color 0.4s, text-shadow 0.4s;
+}
+header p {
+  font-size: 1.12em;
+  color: var(--text-sub);
+  margin-bottom: 2.5em;
+  margin-top: 0.5em;
+  text-shadow: 0 0 4px var(--text-sub);
+  transition: color 0.4s;
+}
+
+section h2 {
+  color: var(--section);
+  font-size: 1.35em;
+  margin-top: 2em;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  text-shadow: 0 0 7px var(--section);
+}
+article {
+  background: var(--bg-card);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 13px 13px 0;
+  margin-bottom: 1.7em;
+  padding: 1.1em 1.15em 1em 1.5em;
+  box-shadow: 0 0 12px var(--accent-alt)1a;
+  transition: border-color 0.2s, background 0.4s;
+}
+article:hover { border-left: 3px solid var(--accent-alt); }
+
+a {
+  color: var(--link);
+  transition: color 0.18s;
+  text-shadow: 0 0 8px var(--link)3d;
+}
+a:hover { color: var(--link-hover); text-shadow: 0 0 14px var(--link-hover)4b; }
+
+footer {
+  text-align: center;
+  color: var(--footer);
+  font-size: 0.98em;
+  border-top: 1px solid var(--bg-card);
+  padding: 2em 0 0.8em 0;
+  margin-top: 6em;
+  opacity: 0.85;
+  transition: color 0.4s, border-top 0.4s;
+}
+
+/* For code blocks and usage info */
+pre, code {
+  background: var(--code-bg);
+  color: var(--code);
+  padding: 0.65em 1em;
+  border-radius: 5px;
+  font-size: 1em;
+  font-family: 'Share Tech Mono', monospace;
+  box-shadow: 0 0 8px var(--code);
+  margin: 1em 0;
+  transition: background 0.4s, color 0.4s;
+}
+
+.glitch {
+  position: relative;
+  color: var(--headline);
+  font-size: 2.6em;
+  font-family: 'Share Tech Mono', monospace;
+  animation: glitch 1.6s infinite linear alternate-reverse;
+  text-shadow:
+     1px 1px var(--accent),
+     -1px -2px var(--accent-alt);
+}
+@keyframes glitch {
+  0% { text-shadow: 2px 2px var(--accent), -2px -2px var(--accent-alt); }
+  20% { text-shadow: -2px 0 var(--accent-alt), 2px 2px var(--accent); }
+  40% { text-shadow: 2px -2px var(--accent), -2px 2px var(--accent-alt); }
+  60% { text-shadow: 2px 2px var(--accent-alt), -2px -2px var(--accent); }
+  80%, 100% { text-shadow: 0 0 var(--accent), 0 0 var(--accent-alt); }
+}
+
+#profile {
+  margin: 2.5em 0 3em 0;
+}
+.profile-row {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  flex-wrap: wrap;
+}
+.profile-avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  box-shadow: 0 0 18px var(--accent-alt), 0 0 10px var(--accent);
+  object-fit: cover;
+  background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+  border: 3px solid var(--accent);
+}
+.profile-bio h2 {
+  margin-top: 0;
+  color: var(--section);
+  text-shadow: 0 0 4px var(--section);
+}
+.profile-bio p {
+  color: var(--text);
+  margin-bottom: 1em;
+  font-size: 1.07em;
+}
+.profile-badges {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+}
+.badge {
+  background: linear-gradient(90deg, var(--accent), var(--accent-alt));
+  color: #1e1e2e;
+  font-weight: 700;
+  border-radius: 14px;
+  padding: 0.4em 1em;
+  font-size: 0.98em;
+  letter-spacing: 0.07em;
+  box-shadow: 0 0 8px var(--accent-alt);
+  border: none;
+  transition: background 0.3s;
+  margin-bottom: 0.3em;
+}
+.badge:hover {
+  background: linear-gradient(90deg, var(--accent-alt), var(--accent));
+  color: var(--accent);
+  cursor: default;
+}
+@media (max-width: 540px) {
+  .profile-row { flex-direction: column; align-items: flex-start; }
+  .profile-avatar { width: 80px; height: 80px; margin-bottom: 1em; }
+}

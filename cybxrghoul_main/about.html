@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About | YourName</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <!-- Theme Switch Button -->
+  <button id="theme-toggle" aria-label="Toggle dark/light mode">🌚</button>
+  <div id="tsparticles"></div>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="tryhackme-writeups.html">TryHackMe_Writeups</a></li>
+      <li><a href="tools.html">Tools</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1 class="glitch">About Me</h1>    
+    <p>Get to know me, my professional journey, and how to reach out.</p>
+    <section id="profile">
+  <div class="profile-row">
+    <img class="profile-avatar" src="assets/images/cyberpunk_profile.png.png" alt="Your Cyberpunk Avatar">
+    <div class="profile-bio">
+      <h2>About Me</h2>
+      <p>
+        I’m CybxrGhoul, a cyber security enthusiast with hands-on experience in vulnerability analysis, ethical hacking, and tool mastery. I love exploring new CTFs, especially on TryHackMe, and sharing guides on tools like Nmap, Burp Suite, and more evolving tools.
+      </p>
+      <div class="profile-badges">
+        <span class="badge">Penetration Tester</span>
+        <span class="badge">Linux</span>
+        <span class="badge">Networking</span>
+        <span class="badge">Ethical Hacker</span>
+        <span class="badge">TryHackMe</span>
+        <span class="badge">HTB</span>
+      </div>
+    </div>
+  </div>
+</section>
+  </header>
+
+  <main>
+    <section>
+      <h2>Bio</h2>
+      <article>
+        <h3>Professional Journey</h3>
+        <p>Describe your education, background, and cybersecurity interests here.</p>
+      </article>
+      <article>
+        <h3>Contact</h3>
+        <p>Add your email, LinkedIn, or other links for collaboration.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+      <p>&copy; 2025 CybxrGhoul | A Cyber Space</p>
+  </footer>
+
+ <script>
+const toggle = document.getElementById('theme-toggle');
+
+// Apply saved theme on page load
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'light') {
+  document.body.setAttribute('data-theme', 'light');
+  toggle.textContent = '🌞';
+} else {
+  document.body.removeAttribute('data-theme');
+  toggle.textContent = '🌚';
+}
+
+// Listen for toggle button click
+toggle.onclick = () => {
+  if (!document.body.hasAttribute('data-theme')) {
+    document.body.setAttribute('data-theme', 'light');
+    localStorage.setItem('theme', 'light');
+    toggle.textContent = '🌞';
+  } else {
+    document.body.removeAttribute('data-theme');
+    localStorage.setItem('theme', 'dark');
+    toggle.textContent = '🌚';
+  }
+};
+</script>
+<!-- tsParticles library (CDN) -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@3.1.0/tsparticles.bundle.min.js"></script>
+<script>
+tsParticles.load("tsparticles", {
+  fullScreen: {
+    enable: true,
+    zIndex: -1
+  },
+  particles: {
+    number: { value: 40 },
+    color: { value: ["#39ff14", "#00fff7", "#f500a5"] },
+    shape: { type: "circle" },
+    opacity: { value: 0.56, random: true },
+    size: { value: 4, random: true },
+    move: {
+      direction: "none",
+      enable: true,
+      outModes: "bounce",
+      speed: 1.4
+    }
+  },
+  background: {
+    color: {
+      value: "transparent"
+    }
+  },
+});
+</script>
+</body>
+</html>
