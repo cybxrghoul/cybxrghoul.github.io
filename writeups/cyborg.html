@@ -1,1 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blue | TryHackMe Writeup</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <!-- Add any extra CSS/JS if needed -->
+</head>
+<body>
+     <button id="theme-toggle" aria-label="Toggle dark/light mode">🌚</button>
+  <nav>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../tryhackme-writeups.html" class="active">TryHackMe Writeups</a></li>
+      <li><a href="../tools.html">Tools</a></li>
+      <li><a href="../about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <img src="../assets/images/cyborg.jpeg" alt="Cyborg" class="neon-avatar">
+    <h1 class="writeup-title">Cyborg</h1>
+    <div class="writeup-meta">
+      <span class="difficulty easy">💻 Easy Box | </span> 
+      <span class="minutes">⏰ 25 min</span>
+      
+    </div>
+  </header>
+
+  <main>
+    <h1> Hallo, CybxrGhoul here!</h1>
+    <p> Let's start with Cyborg in TryHackMe. </p>
+    <h2>Enumeration</h2>
+    <p>
+        Nmap is the first step that we will use to gather open ports, services and many more!
+      <!-- Start your walkthrough step by step: what tools you used, and results -->
+    </p>
+    <pre>nmap -vv 10.10.1.19</pre>
+    <h2>Exploitation</h2>
+    <p>
+      <!-- Your steps, screenshots, commands, and explanations -->
+    </p>
+    <h2>Privilege Escalation</h2>
+    <p>
+      <!-- How you got root/admin, and any post-ex steps -->
+    </p>
+    <!-- Add as many sections (with <h2>) as needed -->
+  </main>
+  <script>
+const toggle = document.getElementById('theme-toggle');
+
+// Apply saved theme on page load
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'light') {
+  document.body.setAttribute('data-theme', 'light');
+  toggle.textContent = '🌞';
+} else {
+  document.body.removeAttribute('data-theme');
+  toggle.textContent = '🌚';
+}
+
+// Listen for toggle button click
+toggle.onclick = () => {
+  if (!document.body.hasAttribute('data-theme')) {
+    document.body.setAttribute('data-theme', 'light');
+    localStorage.setItem('theme', 'light');
+    toggle.textContent = '🌞';
+  } else {
+    document.body.removeAttribute('data-theme');
+    localStorage.setItem('theme', 'dark');
+    toggle.textContent = '🌚';
+  }
+};
+</script>   
+</body>
+</html>
 
