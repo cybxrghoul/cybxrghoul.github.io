@@ -137,6 +137,10 @@ header p {
   transition: color 0.4s;
 }
 
+p {
+  font-size: 1.16em;  /* You can increase this value as you like */
+}
+
 section h2 {
   color: var(--section);
   font-size: 1.35em;
@@ -182,7 +186,7 @@ pre, code {
   border-radius: 5px;
   font-size: 1em;
   font-family: 'Share Tech Mono', monospace;
-  box-shadow: 0 0 8px var(--code);
+  box-shadow: 0 0 9px var(--code);
   margin: 1em 0;
   transition: background 0.4s, color 0.4s;
 }
@@ -260,3 +264,165 @@ pre, code {
   .profile-row { flex-direction: column; align-items: flex-start; }
   .profile-avatar { width: 80px; height: 80px; margin-bottom: 1em; }
 }
+
+.thm-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.4em 2em;
+  margin-top: 2em;
+  justify-items: center;
+}
+
+.thm-showcase {
+  background: linear-gradient(133deg, #171b2d 75%, #39ff14 240%);
+  border-radius: 18px;
+  border: 2.5px solid var(--accent);
+  box-shadow: 0 8px 44px #00fff766, 0 0px 13px var(--accent-alt)44 inset;
+  width: 250px;
+  min-height: 135px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text);
+  padding: 0.8em 0.8em;
+  position: relative;
+  transition:
+    box-shadow 0.22s cubic-bezier(.61,.49,.71,.94),
+    border-color 0.18s cubic-bezier(.55,.09,.92,.63),
+    background 0.22s cubic-bezier(.59,.41,.87,.84),
+    transform 0.15s cubic-bezier(.58,.32,.83,.93);
+}
+
+.thm-showcase:hover {
+  box-shadow: 0 4px 70px 0 var(--accent-alt)99, 0 0 40px var(--accent)55;
+  background: linear-gradient(110deg, var(--accent-alt)6, #181823 100%);
+  border-color: var(--accent-alt);
+  transform: translateY(-3px) scale(1.02);
+  z-index: 2;
+}
+
+.showcase-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(45deg, #11ffc7 23%, #7dff58 88%);
+  border-radius: 12px;
+  box-shadow: 0 0 18px #00fff7a2;
+  margin-right: 1.1em;
+  flex-shrink: 0;
+}
+
+.showcase-logo img {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 9px;
+  box-shadow: 0 0 10px var(--accent-alt)55;
+}
+
+.showcase-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.showcase-title {
+  color: var(--accent);
+  font-weight: 900;
+  font-size: 1.26em;
+  font-family: 'Share Tech Mono', monospace;
+  margin-bottom: 0.17em;
+  letter-spacing: 0.09em;
+  text-shadow: 0 0 16px var(--accent)22;
+}
+
+.showcase-tags {
+  display: flex;
+  align-items: center;
+  gap: 0.63em;
+  font-size: 0.99em;
+}
+
+.showcase-difficulty {
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 2.5px 13px;
+  color: #171b2d;
+  background: #13e758;
+  box-shadow: 0 0 12px #13e75854, 0 0 5px #39ff14a2;
+  letter-spacing: 0.03em;
+}
+.showcase-difficulty.easy { background: #13e758; }
+.showcase-difficulty.beginner { background: #00fff7; color: #243c7f; }
+.showcase-difficulty.medium { background: #fbbc06; color: #2c2c1d; }
+.showcase-difficulty.hard { background: #ff4646; color: #1b1b22; }
+
+.showcase-minutes {
+  color: #fff;
+  background: #243d44;
+  padding: 3px 12px;
+  border-radius: 8px;
+  font-size: 0.94em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 0 7px #00fff774;
+}
+
+.showcase-minutes i {
+  color: #00fff7;
+  margin-right: 2px;
+}
+
+[data-theme="light"] .thm-showcase {
+  background: linear-gradient(133deg, #f2faff 85%, #02c5ff 160%);
+  color: #222;
+  border-color: #02c5ff;
+}
+
+[data-theme="light"] .showcase-title {
+  color: #02c5ff;
+  text-shadow: 0 0 8px #02c5ff55;
+}
+[data-theme="light"] .showcase-difficulty {
+  box-shadow: 0 0 7px #13e75844;
+  background: #13e758;
+  color: #262818;
+}
+[data-theme="light"] .showcase-minutes {
+  background: #eaf7ff;
+  color: #102745;
+}
+[data-theme="light"] .showcase-minutes i {
+  color: #02c5ff;
+}
+
+.neon-avatar {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #39ff14;
+  box-shadow:
+    0 0 32px 9px #00fff7a6,
+    0 0 66px #39ff1488,
+    0 0 0 12px #00fff726 inset;
+  background: linear-gradient(135deg, #151b28 60%, #00fff7 200%);
+  margin-bottom: 24px;
+  display: block;
+  transition: box-shadow 0.25s;
+}
+.neon-avatar:hover, .neon-avatar:focus {
+  box-shadow:
+    0 0 72px 21px #39ff14d5,
+    0 0 90px #00fff7cc,
+    0 0 0 16px #1a1f45aa inset;
+  border-color: #00fff7;
+}
+
+
+
+
+
