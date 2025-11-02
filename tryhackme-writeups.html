@@ -5,6 +5,7 @@
   <title>TryHackMe Writeups | CybxrGhoul</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
   <!-- Theme Switch Button -->
@@ -26,13 +27,29 @@
 
   <main>
     <section>
-      <h2>Latest Writeups</h2>
-      <article>
-        <h3>Machine/Room Name</h3>
-        <p>Writeup for this TryHackMe room will go here...</p>
-      </article>
-      <!-- Add more articles for each writeup -->
-    </section>
+  <h2>My TryHackMe Writeups</h2>
+
+<div class="thm-showcase-grid">
+  <a class="thm-showcase" href="writeups/cyborg.html">
+    <div class="showcase-logo">
+      <img src="assets/images/cyborg.jpeg" alt="Cyborg logo">
+    </div>
+    <div class="showcase-content">
+      <div class="showcase-title">Cyborg</div>
+      <div class="showcase-tags">
+        <span class="showcase-difficulty easy">Easy</span>
+        <span class="showcase-minutes"><i class="fas fa-clock"></i> 25 min</span>
+      </div>
+    </div>
+  </a>
+  
+  <!-- Add more as needed -->
+   
+
+
+</section>
+
+
   </main>
 
   <footer>
@@ -94,5 +111,30 @@ tsParticles.load("tsparticles", {
   },
 });
 </script>
+
+<script>
+const writeups = [
+  {
+    title: "Blue",
+    url: "writeups/thm-blue.html",
+    difficulty: "Windows — Easy"
+  },
+  {
+    title: "RootMe",
+    url: "writeups/thm-rootme.html",
+    difficulty: "Linux — Beginner"
+  },
+  // ADD NEW WRITEUPS HERE
+];
+
+const listDiv = document.getElementById("writeup-list");
+listDiv.innerHTML = writeups.map(w =>
+  `<a class="writeup-card" href="${w.url}">
+    <h3>${w.title}</h3>
+    <span>${w.difficulty}</span>
+  </a>`
+).join("");
+</script>
+
 </body>
 </html>
