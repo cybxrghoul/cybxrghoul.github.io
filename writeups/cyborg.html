@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Blue | TryHackMe Writeup</title>
+  <title>Cyborg | TryHackMe Writeup</title>
   <link rel="stylesheet" href="../assets/css/styles.css">
   <!-- Add any extra CSS/JS if needed -->
 </head>
@@ -30,17 +30,70 @@
   <main>
     <h1> Hallo, CybxrGhoul here!</h1>
     <p> Let's start with Cyborg in TryHackMe. </p>
-    <h2>Enumeration</h2>
     <p>
-        Nmap is the first step that we will use to gather open ports, services and many more!
+      Before we start with enumeration, let's add the IP address to our <br>/etc/hosts. To do that, you have to follow the below commands on your terminal: <br>
+      <pre> $~ sudo su</pre>
+      <pre> # nano /etc/hosts</pre>
+      <p> inside /etc/hosts, add the copied IP address, then press TAB button and type: <i>cyborg.thm</i></p>
+      <p> DO NOT forget to start your <i>Open VPN</i> with the .ovpn that you certainly would've downloaded from your TryHackMe web. </p>
+       <p>  Alrighty! Now we are good to go.  </p>
+       <p> Lets start with Nmap now. 
+      </p>
+    <h1>🌡️ Enumeration</h1>
+    
+      <p> <b>Nmap</b> is the first tool that we will use to gather open ports, services, service versions and many more!</p>
+
+      <!-- TIPS BLOCK STARTS -->
+      <div class="writeup-tips-board">
+        <span class="tips-title">💡 Tip</span>
+        <ul class="tips-list">
+          <li>You can add <code>-p-</code> to your Nmap scan for ALL ports.</li>
+          <li>Always check service versions for exploits!</li>
+          <li>Use VPN if you can’t reach the box from your network.</li>
+        </ul>
+      </div>
+      <!-- Tips BLOCK ENDS-->
+        
+      
       <!-- Start your walkthrough step by step: what tools you used, and results -->
     </p>
-    <pre>nmap -vv 10.10.1.19</pre>
+    <p> Clack your keyboard with this first command:</p>
+    <pre>nmap -vv -sV 10.10.1.19</pre>
+    <p> <i>
+      -vv : Specifies verbose mode. <br>
+      -sV : toggles service version mode on.
+    </i></p>
+    <p> then we would recieve the result: </p>
     <div class="writeup-screenshot">
-  <img src="../assets/images/cyborg-nmap.png" alt="Nmap scan on cyborg box">
-  <span class="caption">Nmap output showing ssh port and http open on cyborg</span>
-</div>
+      <img src="../assets/images/cyborg-nmap.png" alt="Nmap scan on cyborg box">
+      <span class="caption">Nmap output showing SSH & HTTP ports are open</span>
+    </div>
+    <p> 
+      when we visit the webpage, there is nothing much:
+    </p>
+    <div class="writeup-screenshot">
+      <img src="../assets/images/cyborg-page1.png" alt="cyborg box">
+      <span class="caption">http://cyborg.thm</span>
+    </div>
 
+    <p> Hence, Lets begin with enumerating SUB-DOMAINS of the website.</p>
+    <h2> Subdomain Enumeration</h2>
+    <p> Tool: Ffuf</p>
+    <p> Let's use the ffuf tool to perform subdomain fuzzing!</p>
+    <p> ~Command:</p>
+    <pre>ffuf -w /usr/share/wordlists/dirb/common.txt -u http://cyborg.thm/FUZZ</pre>
+    <a> Remember to add "FUZZ" in the place where you need to perform enumeration in.</a>
+    <p><i>
+      -w : option to use wordlist <br>
+      -u : to denote which URL<br>
+      -mc : used for matching codes <br>
+    </i></p>
+    <p> We obtain the following results:</p>
+    <div class="writeup-screenshot">
+      <img src="../assets/images/cyborg-ffuf1.png" alt="subdomain fuzzing">
+      <span class="caption"> Ffuf tool usage</span>
+    </div>
+    
     <h2>Exploitation</h2>
     <p>
       <!-- Your steps, screenshots, commands, and explanations -->
@@ -79,4 +132,3 @@ toggle.onclick = () => {
 </script>   
 </body>
 </html>
-
