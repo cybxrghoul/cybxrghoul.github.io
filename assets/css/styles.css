@@ -422,6 +422,39 @@ pre, code {
   border-color: #00fff7;
 }
 
+.writeup-screenshot {
+  text-align: center;
+  margin: 1.2em 0 1.6em 0;
+}
+.writeup-screenshot img {
+  max-width: 96%;
+  border-radius: 11px;
+  box-shadow: 0 0 16px 1px var(--accent-alt)22;
+  border: 1.5px solid var(--accent);
+  background: var(--bg-card);
+  padding: 6px;
+  transition: box-shadow 0.22s;
+}
+.writeup-screenshot img:hover {
+  box-shadow: 0 0 30px 5px var(--accent);
+}
+.writeup-screenshot .caption {
+  display: block;
+  color: var(--section);
+  font-size: 0.96em;
+  margin-top: 0.3em;
+  letter-spacing: 0.01em;
+}
+[data-theme="light"] .writeup-screenshot img {
+  border-color: #02c5ff;
+  background: #eff8ff;
+}
+[data-theme="light"] .writeup-screenshot .caption {
+  color: #0b3154;
+}
+
+
+
 
 
 
