@@ -688,3 +688,52 @@ pre, code {
   text-shadow: 0 0 8px #39ff14;
 }
 
+
+
+
+
+.thm-question-block {
+  background: #171e23;
+  border: 2px solid #00fff7;
+  border-radius: 13px;
+  padding: 1.2em 1.4em 1.2em 1.3em;
+  margin: 2em 0 1.8em 0;
+  max-width: 540px;
+  color: #b4faff;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1.15em;
+  transition: border-color 0.18s;
+  position: relative;
+  overflow-x: auto;
+}
+
+.thm-q-title {
+  color: #00fff7;
+  font-size: 1.13em;
+  font-weight: 700;
+  margin-bottom: 0.7em;
+  letter-spacing: 0.07em;
+}
+
+.thm-a-answer {
+  color: #39ff14;
+  font-size: 1.11em;
+  margin-top: 0.15em;
+  letter-spacing: 0.04em;
+}
+
+.thm-a-answer span {
+  color: #b4faff;
+  font-weight: 600;
+  margin-right: 0.3em;
+}
+
+.thm-question-block:hover {
+  border-color: #39ff14;
+}
+
+
+body, .main-content, .profile-section, .featured-box-card, .thm-question-block {
+  font-family: 'Fira Mono', 'Share Tech Mono', monospace;
+}
+
