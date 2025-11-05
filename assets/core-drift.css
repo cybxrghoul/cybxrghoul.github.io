@@ -1,0 +1,36 @@
+/* === CORE DRIFT: REACTOR HALO EFFECT === */
+
+#coredrift {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    opacity: 0.25;
+    pointer-events: none;
+    background: radial-gradient(circle at center, #000 0%, #010a0a 100%);
+  }
+  
+  .core-title {
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: clamp(44px, 9vw, 110px);
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    color: #00fff7;
+    text-shadow:
+      0 0 12px #00fff777,
+      0 0 36px #39ff1499,
+      0 0 60px #00fff744;
+    animation: corePulse 6s ease-in-out infinite;
+  }
+  
+  @keyframes corePulse {
+    0%, 100% { text-shadow: 0 0 10px #00fff755; transform: translateX(-50%) scale(1); }
+    50% { text-shadow: 0 0 25px #00fff7bb; transform: translateX(-50%) scale(1.03); }
+  }
+  
