@@ -31,14 +31,18 @@
     <h1> Hallo, CybxrGhoul here!</h1>
     <p> Let's start with Cyborg in TryHackMe. </p>
     <p>
-      Before we start with enumeration, let's add the IP address to our <br>/etc/hosts. To do that, you have to follow the below commands on your terminal: <br>
-      <pre> $~ sudo su</pre>
+      Before we start with enumeration, let's add the IP address to our <br>/etc/hosts.</p>
+      
+      <p>To do that, you have to follow the below commands on your terminal: </p><br>
+      <pre> ~$ sudo su</pre>
       <pre> # nano /etc/hosts</pre>
-      <p> inside /etc/hosts, add the copied IP address, then press TAB button and type: <i>cyborg.thm</i></p>
-      <p> DO NOT forget to start your <i>Open VPN</i> with the .ovpn that you certainly would've downloaded from your TryHackMe web. </p>
-       <p>  Alrighty! Now we are good to go.  </p>
+      <p> inside /etc/hosts, add the copied IP address, then press TAB button and type: <i>cyborg.thm</i></p> <br>
+      <p> DO NOT forget to start your <i>Open VPN</i> with the .ovpn that you certainly would've downloaded from your TryHackMe web. </p> <br>
+       <p>  Alrighty! Now we are good to go.  </p> <br>
        <p> Lets start with Nmap now. 
       </p>
+
+      <br>
     <h1>🌡️ Enumeration</h1>
     
       <p> <b>Nmap</b> is the first tool that we will use to gather open ports, services, service versions and many more!</p>
@@ -54,20 +58,41 @@
       </div>
       <!-- Tips BLOCK ENDS-->
         
-      
+      <br>
       <!-- Start your walkthrough step by step: what tools you used, and results -->
     </p>
     <p> Clack your keyboard with this first command:</p>
-    <pre>nmap -vv -sV 10.10.1.19</pre>
+    <pre>~$ nmap -vv -sV 10.10.1.19</pre>
     <p> <i>
       -vv : Specifies verbose mode. <br>
       -sV : toggles service version mode on.
     </i></p>
+    <br>
     <p> then we would recieve the result: </p>
     <div class="writeup-screenshot">
       <img src="../assets/images/cyborg-nmap.png" alt="Nmap scan on cyborg box">
       <span class="caption">Nmap output showing SSH & HTTP ports are open</span>
     </div>
+    
+    <p> Therefore, we have acquired our first answer: </p>
+    <div class="thm-question-block">
+      <div class="thm-q-title">1. Scan the machine, how many ports are open?</div>
+      <div class="thm-a-answer"><span>Answer:</span> 2</div>
+    </div>
+    
+    
+    <p> We have acquired the answer for the 2nd question too:</p>
+    <div class="thm-question-block">
+      <div class="thm-q-title">❓ What service is running on port 22?</div>
+      <div class="thm-a-answer"><span>Answer:</span> ssh</div>
+    </div>
+
+    <p>Moreover, we also have the answer for 3rd question</p>
+    <div class="thm-question-block">
+      <div class="thm-q-title">❓ What service is running on port 80?</div>
+      <div class="thm-a-answer"><span>Answer:</span> http</div>
+    </div>
+
     <p> 
       when we visit the webpage, there is nothing much:
     </p>
@@ -80,29 +105,235 @@
     <h2> Subdomain Enumeration</h2>
     <p> Tool: Ffuf</p>
     <p> Let's use the ffuf tool to perform subdomain fuzzing!</p>
-    <p> ~Command:</p>
-    <pre>ffuf -w /usr/share/wordlists/dirb/common.txt -u http://cyborg.thm/FUZZ</pre>
+    <p>Command:</p>
+    <pre>~$ ffuf -w /usr/share/wordlists/dirb/common.txt -u http://cyborg.thm/FUZZ</pre>
     <a> Remember to add "FUZZ" in the place where you need to perform enumeration in.</a>
     <p><i>
       -w : option to use wordlist <br>
       -u : to denote which URL<br>
       -mc : used for matching codes <br>
     </i></p>
+    <br>
     <p> We obtain the following results:</p>
     <div class="writeup-screenshot">
       <img src="../assets/images/cyborg-ffuf1.png" alt="subdomain fuzzing">
-      <span class="caption"> Ffuf tool usage</span>
+      <span class="caption"> Ffuf Tool Results</span>
     </div>
+
+    <p> We can see that we've got several new subdomains.</p>
+    <p> The first one that we got is "/admin", it looks positive to try out at the drop of the hat.</p>
+   
+    <div class="writeup-screenshot">
+      <img src="../assets/images/admin-page.png" alt="Admin page">
+      <span class="caption">Admin Page</span>
+    </div>
+    <p> Great, looks like we reached a page!</p>
+    <p> Look around the pages, and try to visit each and every single one of them</p>
+    <p> Scrutinize every page for clues and vulnerabilities</p>
+    <br>
+      <div class="writeup-tips-board">
+        <span class="tips-title">💡 Tip</span>
+        <ul class="tips-list">
+          <li>Scrutinize every page for clues and vulnerabilities in plain sight, such as viewing source page and so on.</li>
+          <li>Noting of names can be important as it helps to accessing into accounts</li>
+        </ul>
+      </div>
+      <br>
+
+      <p> As we click to the "Admins" page, i.e., "cyborg.thm/admin/admin.html" page, there was a convo. </p> 
+      <br>
+      <p> But nothing matters except the names, especially <b>"Alex"</b> as he mentions about <b>"music_archieve"</b></p>
+      <br>
+      
+
+
+      <p> When we visit the "/etc" Page, we can find some interesting stuffs by visiting /etc/squid:</p>
+      <div class="writeup-screenshot">
+      <img src="../assets/images/etc-squid.png" alt="/etc/squid">
+    </div>
+
+    <p> Go further inside passwords, and you will see:</p>
+    <div class="writeup-screenshot">
+      <img src="../assets/images/ma-pass.png" alt="/etc/squid">
+    </div>
+
+    <p> I was confused at first, however, I thought back to where Alex character mentions about "music_archieve"; and I went straight to hashcat wikipidia: </p>
+    <a href="https://hashcat.net/wiki/doku.php?id=example_hashes">Click Me</a>
+    <p> and yes! I found the mode there: </p>
+    <div class="writeup-screenshot">
+      <img src="../assets/images/hashcat-wiki.png">
+    </div>
+
+    <p> and looks like the mode for hashtag command that we will be using would be <i>1600</i> </p>
+    <pre>hashcat -a 0 -m 1600 hash.txt /usr/share/wordlists/rockyou.txt</pre>
+    <p> <i> 
+      -a 0 : Attack mode set for dictionary attack  <br>
+      -m 1600 : mode set for the desired hash  
+    </i></p>
+    <br>
     
-    <h2>Exploitation</h2>
+    
+    <div class="writeup-screenshot">
+      <img src="../assets/images/hash-cracked.png">
+    </div>
+
+    <p> Damn, good!</p>
+    <p> That went fast!</p>
+    
+   
+    <p> Now, we have the passkey but where should we apply this?</p>
+    <br>
+    <h1>🔊 The .tar File</h1>
+    <p> Now as we look back into the page, we would find, <b> Archive</b>, lets download it and see what we acquired</p>
+    <div class="writeup-screenshot">
+      <img src="../assets/images/archieve-download.png">
+    </div>
+
+    <p> It is a '.tar' file, so let's un-tar it with the following command:</p>
+    <pre> tar -xvf archive.tar</pre>
+    <p><i>
+      -x : Extracts file from archive <br>
+      -v : Verbose output <br>
+      -f : Specifies the file to be processed
+    </i></p>
+
+    <br>
+    <p> After extracting we would see a folder in our pwd, named "home" </p>
+    <div class="writeup-screenshot">
+      <img src="../assets/images/kali1.png">
+    </div>
+
+      <p> As we cd through each and every directory, we would reach a directory called "/final_archive"</p>
+      <p> In it, we would find different files: </p>
+      <div class="writeup-screenshot">
+        <img src="../assets/images/files.png">
+      </div>
+
+      <p> CAT the README file </p>
+      <p> And we would be getting:</p>
+      <div class="writeup-screenshot">
+        <img src="../assets/images/readme.png">
+      </div>
+
+      <p> Inbetween I even tried ssh-ing with the music_archive passwd creds, however that didn't work out... </p>
+      <br>
+      <p> But, the <b> README </b> file caught my eye 👀</p>
+      <br>
+      <p> Therefore, I did a little digging into that in google search, and as we have the '.tar' file, I figured out how to extract it with borg repository's way </p>
+     <br>
+      <p> Then, I installed borg first in my system, with one command:</p>
+      <pre> sudo apt install borgbackup </pre>
+
+      <p> And so I came across this command that worked:</p>
+      <pre> borg list $YOUR_DIR/home/field/dev/final_archive </pre>
+      <b> NOTE: use the "pwd" command in your terminal and replace with "$YOUR_DIR" path.</b>
+      <br>
+      <p> I got the list of what's inside, and</p>
+      
+      <p><b>BOOM!</b></p>
+      <p> I could see our desired file peeking out! :D</p>
+      <br>
+
+
+    <h2>🗡 EXPLOITATION</h2>
     <p>
-      <!-- Your steps, screenshots, commands, and explanations -->
+      Now, its time to extract it, and work it out. </p>
+
+      <p>
+      So I pulled out this line from google again:
     </p>
-    <h2>Privilege Escalation</h2>
+    <pre>~$ borg extract $YOUR_DIR/home/field/dev/final_archive::music_archive</pre>
+    <b> NOTE: use the "pwd" command in your terminal and replace with "$YOUR_DIR" path.</b> <br>
+    
+
+    <p> And it would ask us to enter the PASSPHRASE!!! </p> <br>
+    <p> Type the password we cracked using Hashcat, which is: <b>squidward</b>.</p> <br>
+
+    <p> And here we go!</p> <br>
+    <p> We would be able to find another "home" directory in our current pwd! <br> 
+    And so, follow the consecutive steps:
+    </p>
+    <div class="writeup-screenshot">
+      <img src="../assets/images/homefile.png">
+    </div>
+
+    <p> Once we enter "Desktop" with the help of,</p>
+    <pre> ~$ cd Desktop</pre>
+    <p> We would find <i>secrets.txt</i>, and when you CAT it, it would read:</p>
+    <b> 
+      "shoutout to all the people who have gotten to this stage whoop whoop!" 
+    </b> <br>
+   
+    <p> I <i>swear</i>, I wasn't expecting that. </p> <br>
+    <p> Thought I was disappointed, but when I headed to "Documents" section, I got something: </p> <br>
+    <div class="writeup-screenshot">
+      <img src="../assets/images/documents.png">
+    </div>
+
+    <p> OK! <br>
+      Now lets try SSH-ing with the password credentials
+      </p>
+
+      <pre>~$ ssh alex@cyborg.thm</pre>
+
+      <p> BAM! <br> We're in.</p>
+      <div class="writeup-screenshot">
+        <img src="../assets/images/alex1.png">
+      </div>
+
+      <p> In it, we would see "user.txt", so CAT it:</p>
+      <pre>$~ cat user.txt</pre>
+
+      <p> Hence, we got our next ANSWER!</p>
+      <div class="thm-question-block">
+        <div class="thm-q-title">4. What is the user.txt flag?</div>
+        <div class="thm-a-answer"><span>Answer:</span> flag{1_hop3_y0u_ke3p_th3_arch1v3s_saf3}</div>
+      </div>
+
+        <br>
+    <h2>💀 PRIVILEGE ESCALATION</h2>
     <p>
+      HI! 
       <!-- How you got root/admin, and any post-ex steps -->
     </p>
+    <p> Let's continue with Privilege Escalation!</p>
+    <p> When I tried :</p>
+    <pre>~$ cd /root</pre>
+    <p> It didn't work... So to check with the user permissions, we have to first input the command</p>
+    <pre>~$ sudo -l</pre>
+    <p> It can be observed that only one particular file can be run without any sudo password requirement.</p>
+    <br>
+    <p> As it's a modifiable file, we are gonna get <br><b>/bin/bash</b><br> by executing it.</p>
+    <br>
+    <p>To do that, follow these steps:</p>
+    <pre>~$ cd /etc/mp3backups/</pre>
+    <p>Let's change the permissions. </p>
+    <pre>~$ chmod 777 /etc/mp3backups/backup.sh</pre>
+    <p> In the given image below, you will see how the command changed the "read file" to "read-write-executable file"</p>
+    <div class="writeup-screenshot">
+      <img src="../assets/images/chmod.png">
+    </div>
+
+    <pre>~$ echo "/bin/bash" > backup.sh</pre>
+
+    <p> So, now our own file is ready for its execution. Just <i>clack</i>:</p>
+    <pre>~$ ./backup.sh</pre>
+
+    <br>
+    <p> <b> KABOOOM! 🚩</b></p>
+    <p> We LOOTED the ROOT user!</p>
+    <div class="writeup-screenshot">
+      <img src="../assets/images/root.png">
+    </div>
     <!-- Add as many sections (with <h2>) as needed -->
+      <div class="thm-question-block">
+        <div class="thm-q-title">5. What is the root.txt flag?</div>
+        <div class="thm-a-answer"><span>Answer:</span> flag{Than5s_f0r_play1ng_H0p£_y0u_enJ053d}</div>
+      </div>
+
+      <a> <b> 🔮 Thank you so much for being patient throughout my write-up and so we CRACKED it!</b></a>
+      <p> 💎 I really hope to do and contribute more to my peers & the society.</p>
+      <p> 📌 Let me know how was the write-up in comments! </p>
   </main>
   <script>
 const toggle = document.getElementById('theme-toggle');
