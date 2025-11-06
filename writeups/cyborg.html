@@ -222,7 +222,7 @@
       <br>
       <p> But, the <b> README </b> file caught my eye 👀</p>
       <br>
-      <p> Therefore, I did a little digging into that in google search, and as we have the '.tar' file, I figured out how to extract it with borg repository's way </p>
+      <p> Therefore, I did a little digging into that in google search, and as we have the '.tar' file, I figured out how to extract it with borg repository's way. </p>
      <br>
       <p> Then, I installed borg first in my system, with one command:</p>
       <pre>~$ sudo apt install borgbackup </pre>
@@ -294,7 +294,7 @@
       </div>
 
         <br>
-    <h2>💀 PRIVILEGE ESCALATION</h2>
+    <h2>⏫ PRIVILEGE ESCALATION</h2>
     <p>
       HI! 
       <!-- How you got root/admin, and any post-ex steps -->
@@ -302,7 +302,7 @@
     <p> Let's continue with Privilege Escalation!</p>
     <p> When I tried :</p>
     <pre>~$ cd /root</pre>
-    <p> It didn't work... So to check with the user permissions, we have to first input the command</p>
+    <p> It didn't work... So to check with the user permissions, we have to first input the command,</p>
     <pre>~$ sudo -l</pre>
     <p> It can be observed that only one particular file can be run without any sudo password requirement.</p>
     <br>
@@ -312,7 +312,7 @@
     <pre>~$ cd /etc/mp3backups/</pre>
     <p>Let's change the permissions. </p>
     <pre>~$ chmod 777 /etc/mp3backups/backup.sh</pre>
-    <p> In the given image below, you will see how the command changed the "read file" to "read-write-executable file"</p>
+    <p> In the given image below, you will see how the command changed the "read file" to "read-write-executable file".</p>
     <div class="writeup-screenshot">
       <img src="../assets/images/chmod.png">
     </div>
