@@ -23,7 +23,7 @@
     <h1 class="writeup-title">Cyborg</h1>
     <div class="writeup-meta">
       <span class="difficulty easy">💻 Easy Box | </span> 
-      <span class="minutes">⏰ 45 min | 👾 Linux</span>
+      <span class="minutes">⏰ 45 min | 🐧 Linux</span>
       
     </div>
   </header>
@@ -166,7 +166,7 @@
     </div>
 
     <p> and looks like the mode for hashtag command that we will be using would be <i>1600</i> </p>
-    <pre>hashcat -a 0 -m 1600 hash.txt /usr/share/wordlists/rockyou.txt</pre>
+    <pre>~$ hashcat -a 0 -m 1600 hash.txt /usr/share/wordlists/rockyou.txt</pre>
     <p> <i> 
       -a 0 : Attack mode set for dictionary attack  <br>
       -m 1600 : mode set for the desired hash  
@@ -191,7 +191,7 @@
     </div>
 
     <p> It is a '.tar' file, so let's un-tar it with the following command:</p>
-    <pre> tar -xvf archive.tar</pre>
+    <pre>~$ tar -xvf archive.tar</pre>
     <p><i>
       -x : Extracts file from archive <br>
       -v : Verbose output <br>
@@ -223,10 +223,10 @@
       <p> Therefore, I did a little digging into that in google search, and as we have the '.tar' file, I figured out how to extract it with borg repository's way </p>
      <br>
       <p> Then, I installed borg first in my system, with one command:</p>
-      <pre> sudo apt install borgbackup </pre>
+      <pre>~$ sudo apt install borgbackup </pre>
 
       <p> And so I came across this command that worked:</p>
-      <pre> borg list $YOUR_DIR/home/field/dev/final_archive </pre>
+      <pre>~$ borg list $YOUR_DIR/home/field/dev/final_archive </pre>
       <b> NOTE: use the "pwd" command in your terminal and replace with "$YOUR_DIR" path.</b>
       <br>
       <p> I got the list of what's inside, and</p>
