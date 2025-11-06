@@ -37,7 +37,7 @@
       <p>To do that, you have to follow the below commands on your terminal: </p><br>
       <pre> ~$ sudo su</pre>
       <pre> # nano /etc/hosts</pre>
-      <p> inside /etc/hosts, add the copied IP address, then press TAB button and type: <i>cyborg.thm</i></p> <br>
+      <p> inside /etc/hosts, add the copied IP address, then press TAB button and type: <i>cyborg.thm</i>.</p> <br>
       <p> DO NOT forget to start your <i>Open VPN</i> with the .ovpn that you certainly would've downloaded from your TryHackMe web. </p> <br>
        <p>  Alrighty! Now we are good to go.  </p> <br>
        <p> Lets start with Nmap now. 
@@ -103,6 +103,7 @@
     </div>
 
     <p> Hence, Lets begin with enumerating SUB-DOMAINS of the website.</p>
+    <br>
     <h2> Subdomain Enumeration</h2>
     <p> Tool: Ffuf</p>
     <p> Let's use the ffuf tool to perform subdomain fuzzing!</p>
@@ -110,9 +111,9 @@
     <pre>~$ ffuf -w /usr/share/wordlists/dirb/common.txt -u http://cyborg.thm/FUZZ</pre>
     <a> Remember to add "FUZZ" in the place where you need to perform enumeration in.</a>
     <p><i>
-      -w : option to use wordlist <br>
-      -u : to denote which URL<br>
-      -mc : used for matching codes <br>
+      -w : option to use wordlist. <br>
+      -u : to denote which URL.<br>
+      -mc : used for matching codes. <br>
     </i></p>
     <br>
     <p> We obtain the following results:</p>
@@ -129,21 +130,21 @@
       <span class="caption">Admin Page</span>
     </div>
     <p> Great, looks like we reached a page!</p>
-    <p> Look around the pages, and try to visit each and every single one of them</p>
-    <p> Scrutinize every page for clues and vulnerabilities</p>
+    <p> Look around the pages, and try to visit each and every single one of them.</p>
+    <p> Scrutinize every page for clues and vulnerabilities.</p>
     <br>
       <div class="writeup-tips-board">
         <span class="tips-title">💡 Tip</span>
         <ul class="tips-list">
           <li>Scrutinize every page for clues and vulnerabilities in plain sight, such as viewing source page and so on.</li>
-          <li>Noting of names can be important as it helps to accessing into accounts</li>
+          <li>Noting of names can be important as it helps to accessing into accounts.</li>
         </ul>
       </div>
       <br>
 
       <p> As we click to the "Admins" page, i.e., "cyborg.thm/admin/admin.html" page, there was a convo. </p> 
       <br>
-      <p> But nothing matters except the names, especially <b>"Alex"</b> as he mentions about <b>"music_archieve"</b></p>
+      <p> But nothing matters except the names, especially <b>"Alex"</b> as he mentions about <b>"music_archieve"</b>.</p>
       <br>
       
 
@@ -158,18 +159,19 @@
       <img src="../assets/images/ma-pass.png" alt="/etc/squid">
     </div>
 
-    <p> I was confused at first, however, I thought back to where Alex character mentions about "music_archieve"; and I went straight to hashcat wikipidia: </p>
+    <p> I was confused at first, however, I thought back to where Alex character mentions about "music_archieve"; 
+      and I went straight to hashcat wikipidia: </p>
     <a href="https://hashcat.net/wiki/doku.php?id=example_hashes">Click Me</a>
-    <p> and yes! I found the mode there: </p>
+    <p> And yes! I found the mode there: </p>
     <div class="writeup-screenshot">
       <img src="../assets/images/hashcat-wiki.png">
     </div>
 
-    <p> and looks like the mode for hashtag command that we will be using would be <i>1600</i> </p>
+    <p> Looks like the mode for hashtag command that we will be using would be <i>1600</i>.</p>
     <pre>~$ hashcat -a 0 -m 1600 hash.txt /usr/share/wordlists/rockyou.txt</pre>
     <p> <i> 
-      -a 0 : Attack mode set for dictionary attack  <br>
-      -m 1600 : mode set for the desired hash  
+      -a 0 : Attack mode set for dictionary attack.  <br>
+      -m 1600 : mode set for the desired hash.
     </i></p>
     <br>
     
