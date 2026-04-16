@@ -1,4 +1,5 @@
 # 🧠 Cybxrghoul — Cybersecurity Blog
+> "Building practical cybersecurity solutions for real-world threats."
 
 ![Cybxrghoul](screenshots/blog.gif)
 
