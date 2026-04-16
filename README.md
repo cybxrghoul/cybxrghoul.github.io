@@ -1,6 +1,6 @@
 # 🧠 Cybxrghoul — Cybersecurity Blog
 
-![Cybxrghoul_blog](screenshots/blog.gif)
+!(screenshots/blog.gif)
 
 🔗 Live Website: https://cybxrghoul.github.io/
 
