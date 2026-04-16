@@ -1,7 +1,7 @@
 # 🧠 Cybxrghoul — Cybersecurity Blog
 > "Building practical cybersecurity solutions for real-world threats."
 
-![Cybxrghoul](screenshots/blog.gif)
+![Cybxrghoul](screenshots/cybxrghoul.gif)
 
 🔗 Live Website: https://cybxrghoul.github.io/
 
