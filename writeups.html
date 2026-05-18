@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TryHackMe Writeups | CybxrGhoul</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Theme Switch Button 
+  <button id="theme-toggle" aria-label="Toggle dark/light mode">🌚</button> -->
+  
+  <div id="tsparticles"></div>
+  
+   <nav class="navbar">
+
+  <a href="index.html" class="nav-brand">
+    <img src="assets/images/logo/cybxrghoul_logo.png" alt="CG Logo">
+    <span>CybxrGhoul</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="writeups.html" class="active">Writeups</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+
+</nav>
+
+  <header>
+    <h1 class="glitch">Writeups</h1>
+    <p>Explore my detailed walkthroughs and notes for vulnerable machine challenges on different platforms. I will update per box weekly, or maximum of two boxes. Beginners, intermediates, and professionals in this side of IT, I welcome everyone!</p>
+  </header>
+
+  <section class="writeups-hub">
+  <h2 class="writeups-hub-title">Platforms</h2>
+  <p class="writeups-hub-subtitle">
+    Browse challenges by platform. More rooms will be added as I pwn them.
+  </p>
+
+  <div class="platform-grid">
+    <article class="platform-card">
+      <h3>TryHackMe</h3>
+      <p>CTF-style labs, guided learning paths, and beginner‑friendly boxes.</p>
+      <a href="writeups/tryhackme/index.html" class="platform-link">
+        View TryHackMe writeups →
+      </a>
+    </article>
+
+    <!-- <article class="platform-card">
+      <h3>Hack The Box</h3>
+      <p>Harder, more OSCP‑style machines and challenges.</p>
+      <a href="writeups/htb/index.html" class="platform-link">
+        View HTB writeups →
+      </a>
+    </article>
+
+    <article class="platform-card">
+      <h3>Root Me</h3>
+      <p>Short, focused challenges for sharpening specific skills.</p>
+      <a href="writeups/rootme/index.html" class="platform-link">
+        View Root Me writeups →
+      </a>
+    </article> -->
+  </div>
+</section>
+
+
+  <footer>
+    <p>&copy; 2025 CybxrGhoul | A Cyber Space</p>
+  </footer>
+
+ <script>
+const toggle = document.getElementById('theme-toggle');
+
+// Apply saved theme on page load
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'light') {
+  document.body.setAttribute('data-theme', 'light');
+  toggle.textContent = '🌞';
+} else {
+  document.body.removeAttribute('data-theme');
+  toggle.textContent = '🌚';
+}
+
+// Listen for toggle button click
+toggle.onclick = () => {
+  if (!document.body.hasAttribute('data-theme')) {
+    document.body.setAttribute('data-theme', 'light');
+    localStorage.setItem('theme', 'light');
+    toggle.textContent = '🌞';
+  } else {
+    document.body.removeAttribute('data-theme');
+    localStorage.setItem('theme', 'dark');
+    toggle.textContent = '🌚';
+  }
+};
+</script>
+
+<!-- tsParticles library (CDN) -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@3.1.0/tsparticles.bundle.min.js"></script>
+<script>
+tsParticles.load("tsparticles", {
+  fullScreen: {
+    enable: true,
+    zIndex: -1
+  },
+  particles: {
+    number: { value: 40 },
+    color: { value: ["#39ff14", "#00fff7", "#f500a5"] },
+    shape: { type: "circle" },
+    opacity: { value: 0.56, random: true },
+    size: { value: 4, random: true },
+    move: {
+      direction: "none",
+      enable: true,
+      outModes: "bounce",
+      speed: 1.4
+    }
+  },
+  background: {
+    color: {
+      value: "transparent"
+    }
+  },
+});
+</script>
+
+<script>
+const writeups = [
+  {
+    title: "Blue",
+    url: "writeups/thm-blue.html",
+    difficulty: "Windows — Easy"
+  },
+  {
+    title: "RootMe",
+    url: "writeups/thm-rootme.html",
+    difficulty: "Linux — Beginner"
+  },
+  // ADD NEW WRITEUPS HERE
+];
+
+const listDiv = document.getElementById("writeup-list");
+listDiv.innerHTML = writeups.map(w =>
+  `<a class="writeup-card" href="${w.url}">
+    <h3>${w.title}</h3>
+    <span>${w.difficulty}</span>
+  </a>`
+).join("");
+</script>
+
+  <link rel="stylesheet" href="assets/quantum-bloom.css">
+<script src="assets/quantum-bloom.js"></script>
+
+</body>
+</html>
+
+
+

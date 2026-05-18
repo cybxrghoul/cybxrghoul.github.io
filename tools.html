@@ -6,28 +6,67 @@
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-  <button id="theme-toggle" aria-label="Toggle dark/light mode">🌚</button>  
+  <!--
+  <button id="theme-toggle" aria-label="Toggle dark/light mode">🌚</button>  -->
+  
   <div id="tsparticles"></div>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="tryhackme-writeups.html">Writeups</a></li>
-      <li><a href="tools.html" class="active">Tools</a></li>
-      <li><a href="about.html">About</a></li>
-    </ul>
-  </nav>
-  <header>
-    <h1>Tools & Tutorials</h1>
-  </header>
+ <nav class="navbar">
+
+  <a href="index.html" class="nav-brand">
+    <img src="assets/images/logo/cybxrghoul_logo.png" alt="CG Logo">
+    <span>CybxrGhoul</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="writeups.html">Writeups</a></li>
+    <li><a href="tools.html" class="active">Tools</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+
+</nav>
+
   <main>
-    <section>
-      <article>
-        <h2>Nmap</h2>
-        <p>Usage examples, command cheats, and guides for nmap and other tools will go here.</p>
-      </article>
-      <!-- Add more articles for future tools -->
-    </section>
-  </main>
+  <section class="tools-hub">
+    <h2 class="tools-title">Tool Arsenal</h2>
+    <p class="tools-subtitle">
+      Browse cybersecurity tools by category, usage, and real-world command examples.
+    </p>
+
+    <div class="tool-search-wrap">
+  <input 
+    type="text" 
+    id="tool-search" 
+    placeholder="Search tools: nmap, web, enum..."
+    autocomplete="off"
+  >
+</div>
+
+    <div class="tool-categories">
+  <button class="tool-filter active" data-filter="all">All</button>
+  <button class="tool-filter" data-filter="recon">Recon</button>
+  <button class="tool-filter" data-filter="enumeration">Enumeration</button>
+  <button class="tool-filter" data-filter="web">Web</button>
+  <button class="tool-filter" data-filter="exploitation">Exploitation</button>
+</div>
+
+    <div class="tool-grid">
+    <!--  <a href="tools/nmap.html" class="tool-card" data-category="recon" data-keywords="nmap recon scanning ports service detection enumeration">
+  <h3>Nmap</h3>
+  <p>Network scanning, port discovery, service detection, and enumeration.</p>
+  <span class="tool-tag">Recon</span>
+</a>
+-->
+
+<a href="tools/wpscan.html" class="tool-card" data-category="web" data-keywords="wpscan wordpress web plugin vulnerability scanner enumeration">
+  <h3>WPScan</h3>
+  <p>WordPress vulnerability scanning and plugin enumeration.</p>
+  <span class="tool-tag">Web</span>
+</a>
+    </div>
+  </section>
+</main>
+
   <footer>
         <p>&copy; 2025 CybxrGhoul | A Cyber Space</p>
   </footer>
@@ -91,6 +130,46 @@ tsParticles.load("tsparticles", {
 <link rel="stylesheet" href="assets/quantum-bloom.css">
 <script src="assets/quantum-bloom.js"></script>
   
+
+//search bar
+<script>
+const searchInput = document.getElementById("tool-search");
+const filterButtons = document.querySelectorAll(".tool-filter");
+const toolCards = document.querySelectorAll(".tool-card");
+
+let activeFilter = "all";
+
+function filterTools() {
+  const searchTerm = searchInput.value.toLowerCase().trim();
+
+  toolCards.forEach(card => {
+    const category = card.dataset.category;
+    const keywords = card.dataset.keywords.toLowerCase();
+    const title = card.querySelector("h3").textContent.toLowerCase();
+    const description = card.querySelector("p").textContent.toLowerCase();
+
+    const matchesCategory = activeFilter === "all" || category === activeFilter;
+    const matchesSearch =
+      title.includes(searchTerm) ||
+      description.includes(searchTerm) ||
+      keywords.includes(searchTerm);
+
+    card.style.display = matchesCategory && matchesSearch ? "block" : "none";
+  });
+}
+
+filterButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    filterButtons.forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+
+    activeFilter = button.dataset.filter;
+    filterTools();
+  });
+});
+
+searchInput.addEventListener("input", filterTools);
+</script>
 </body>
 </html>
 

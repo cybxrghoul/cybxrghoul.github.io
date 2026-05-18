@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TryHackMe | CybxrGhoul</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- Theme Toggle 
+<button id="theme-toggle">🌚</button> -->
+
+<div id="tsparticles"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+  <a href="../../index.html" class="nav-brand">
+    <img src="../../assets/images/logo/cybxrghoul_logo.png" alt="CG Logo">
+    <span>CybxrGhoul</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../writeups.html" class="active">Writeups</a></li>
+    <li><a href="../../tools.html">Tools</a></li>
+    <li><a href="../../about.html">About</a></li>
+  </ul>
+
+</nav>
+
+<!-- HEADER -->
+<header>
+  <h1 class="glitch">TryHackMe Writeups</h1>
+  <p>Here you can find my detailed walkthroughs and notes for TryHackMe challenges.</p>
+</header>
+
+  <div class="thm-showcase-grid">
+
+    <!-- CYBORG -->
+    <a class="thm-showcase" href="cyborg.html">
+      <div class="showcase-logo">
+        <img src="../../assets/images/cyborg.jpeg" alt="Cyborg">
+      </div>
+
+      <div class="showcase-content">
+        <div class="showcase-title">Cyborg</div>
+
+        <div class="showcase-tags">
+          <span class="showcase-difficulty easy">Easy</span>
+          <span class="showcase-minutes">
+            <i class="fas fa-clock"></i> 25 min
+          </span>
+        </div>
+      </div>
+    </a>
+    
+    <!-- FUTURE BOX TEMPLATE -->
+    <!--
+    <a class="thm-showcase" href="blue.html">
+      <div class="showcase-logo">
+        <img src="../../assets/images/blue.jpeg" alt="Blue">
+      </div>
+
+      <div class="showcase-content">
+        <div class="showcase-title">Blue</div>
+
+        <div class="showcase-tags">
+          <span class="showcase-difficulty easy">Easy</span>
+          <span class="showcase-minutes">
+            <i class="fas fa-clock"></i> 30 min
+          </span>
+        </div>
+      </div>
+    </a>
+    -->
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2025 CybxrGhoul | A Cyber Space</p>
+</footer>
+
+<!-- THEME SCRIPT -->
+<script>
+const toggle = document.getElementById('theme-toggle');
+
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'light') {
+  document.body.setAttribute('data-theme', 'light');
+  toggle.textContent = '🌞';
+} else {
+  toggle.textContent = '🌚';
+}
+
+toggle.onclick = () => {
+  if (!document.body.hasAttribute('data-theme')) {
+    document.body.setAttribute('data-theme', 'light');
+    localStorage.setItem('theme', 'light');
+    toggle.textContent = '🌞';
+  } else {
+    document.body.removeAttribute('data-theme');
+    localStorage.setItem('theme', 'dark');
+    toggle.textContent = '🌚';
+  }
+};
+</script>
+
+<!-- PARTICLES -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@3.1.0/tsparticles.bundle.min.js"></script>
+
+<script>
+tsParticles.load("tsparticles", {
+  fullScreen: { enable: true, zIndex: -1 },
+  particles: {
+    number: { value: 40 },
+    color: { value: ["#39ff14", "#00fff7", "#f500a5"] },
+    shape: { type: "circle" },
+    opacity: { value: 0.5, random: true },
+    size: { value: 4, random: true },
+    move: {
+      enable: true,
+      speed: 1.3,
+      outModes: "bounce"
+    }
+  }
+});
+</script>
+
+</body>
+</html>

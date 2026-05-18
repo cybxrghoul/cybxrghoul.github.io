@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WPScan Guide | CybxrGhoul</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body>
+<!----
+<button id="theme-toggle">🌚</button> -->
+<div id="tsparticles"></div>
+
+<nav class="navbar">
+
+  <a href="../index.html" class="nav-brand">
+    <img src="../assets/images/logo/cybxrghoul_logo.png" alt="CG Logo">
+    <span>CybxrGhoul</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../writeups.html">Writeups</a></li>
+    <li><a href="../tools.html" class="active">Tools</a></li>
+    <li><a href="../about.html">About</a></li>
+  </ul>
+
+</nav>
+
+<header>
+  <h1 class="glitch">WPScan Guide</h1>
+  <p>WordPress vulnerability scanning for real-world security testing</p>
+</header>
+
+<main>
+
+    <aside class="toc-box">
+  <h3>On this page</h3>
+  <a href="#intro">Introduction</a>
+  <a href="#what-is-wpscan">What is WPScan?</a>
+  <a href="#applications">Real World Applications</a>
+  <a href="#installation">Installation</a>
+  <a href="#common-error">Fix Common Error</a>
+  <a href="#usage">Usage</a>
+  <a href="#conclusion">Conclusion</a>
+</aside>
+
+<section id="intro">
+  <h2>Introduction</h2>
+  <p>
+    WPScan is one of the most powerful tools used in WordPress security assessments.
+    It is widely used in penetration testing, bug bounty hunting, and real-world security auditing.
+  </p>
+</section>
+
+<section id="what-is-wpscan">
+  <h2>What is WPScan?</h2>
+  <p>
+    WPScan is a well-known, widely used WordPress Security Scanner used in WordPress vulnerability Assessments, Penetration Testing, and even security research in cybersecurity for its efficiency at locating weaknesses in WordPress websites.
+  </p>
+</section>
+
+<section  id="applications">
+  <h2>Real World Applications</h2>
+  <ul>
+    <li>Bug Bounty Hunting</li>
+    <li>Penetration Testing</li>
+    <li>Blue Team Monitoring</li>
+    <li>Web Security Audits</li>
+    <li>Threat Intelligence</li>
+  </ul>
+</section>
+
+<section id="installation">
+  <h2>Installation (Linux)</h2>
+  <div class="writeup-image">
+  <img src="../assets/images/wpscan/wpscan-logo.webp" alt="WPScan Installation Output">
+  <span class="caption">WPScan installation process on Linux</span>
+</div>
+  <p>Install required dependencies:</p>
+  <div class="code-box">
+  <button class="copy-btn">Copy</button>
+  <pre><code>sudo apt update
+sudo apt install -y ruby ruby-dev</code></pre>
+</div>
+
+<p>The above commands will install gem which is a package manager for Ruby. It is used to install, manage, update Ruby libraries(gems), including tools like WPScan.<br>
+
+After installing the Ruby packages with the above commands, implement the below steps:</p>
+
+  <b><p>Install WPScan:</p></b>
+  <div class="code-box">
+     <button class="copy-btn">Copy</button>
+  <pre>sudo gem install wpscan
+wpscan --version</pre>
+
+<p>This will install the WPScan tool and the required libraries.</p>
+</section>
+
+<p> If in any case, you near to get this following issue after installation:</p>
+<div class="writeup-image">
+  <img src="../assets/images/wpscan/issue(3).webp" alt="WPScan Installation Output">
+  <span class="caption">WPScan installation errors on Linux</span>
+</div>
+
+<section id="common-error">
+  <h2>Fix Common Error</h2>
+
+  <p>If you face a logger issue:</p>
+  <div class="code-box">
+     <button class="copy-btn">Copy</button>
+  <pre>nano /usr/local/bin/wpscan</pre> </div>
+
+  <p>Add:</p>
+  <div class="code-box">
+     <button class="copy-btn">Copy</button>
+  <pre>require 'logger'</pre>
+  </div>
+</section>
+
+<section>
+  <h2>Other Installations</h2>
+
+  
+    <h3>Arch Linux</h3>
+    <div class="code-box">
+     <button class="copy-btn">Copy</button>
+      <pre>sudo pacman -S wpscan</pre>
+  </div>
+
+  <h3>MacOS</h3>
+  <div class="code-box">
+     <button class="copy-btn">Copy</button>
+  <pre>brew install wpscanteam/tap/wpscan</pre>
+
+  <h3>Docker</h3>
+  <div class="code-box">
+     <button class="copy-btn">Copy</button>
+  <pre>docker pull wpscanteam/wpscan
+docker run -it wpscanteam/wpscan --help</pre>
+</section>
+
+<p> Alright, let's get down to business:</p>
+
+
+<section id="usage">
+  <h2>WPScan Usage</h2>
+
+  <h3>i) Basic WordPress Scan</h3>
+  <div class="code-box">
+    <button class="copy-btn">Copy</button>
+    <pre>wpscan --url https://example.com</pre>
+    <p class="tool-note"> <i>— url: To determine the url of a website </i></p>
+  </div>
+
+  <h3>ii) Enumerate WordPress Components</h3>
+  <p> To gather information about WordPress installation- WordPress version, installed plugins, installed themes, and users.</p>
+  <div class="code-box">
+    
+    <button class="copy-btn">Copy</button>
+    <pre><code>wpscan --url https://example.com --enumerate ap,at,cb,dbe,u</code></pre>
+    <p class="tool-note">
+      <i>
+        ap = all plugins, at = all themes, cb = config backup, dbe = db exports, u = users
+      </i>
+  </div>
+
+  <h3>iii) Enumerate Vulnerable Plugins</h3>
+  <div class="code-box">
+    <button class="copy-btn">Copy</button>
+    <pre><code>wpscan --url https://example.com --enumerate vp</code></pre>
+  </div>
+
+  <h3>iv) Enumerate Vulnerable Themes</h3>
+  <div class="code-box">
+    <button class="copy-btn">Copy</button>
+    <pre><code>wpscan --url https://example.com --enumerate vt</code></pre>
+  </div>
+
+  <h3>v) Scan With API Token</h3>
+  <div class="code-box">
+    <button class="copy-btn">Copy</button>
+    <pre><code>wpscan --url https://example.com --api-token YOUR_API_TOKEN</code></pre>
+  </div>
+
+  <h3>vi) Save Output to File</h3>
+  <div class="code-box">
+    <button class="copy-btn">Copy</button>
+    <pre><code>wpscan --url https://example.com -o wpscan-report.txt</code></pre>
+  </div>
+
+  <p class="tool-note">
+    Use WPScan only on websites you own or are authorized to test.
+  </p>
+
+  <h3>vii) Password Brute-Forcing</h3>
+  <div class="code-box">
+    <button class="copy-btn">Copy</button>
+    <pre><code>wpscan --url <target> --passwords <wordlist-file> --usernames usernames </code></pre>
+  </div>
+
+  <h3>viii) Version Detection </h3>
+  <p>Version detection is very important as if checked and when the version is out-dated then it might be vulnerable and exploitable too.</p>
+  <div class="code-box">
+    <button class="copy-btn">Copy</button>
+    <pre><code>wpscan --url <target-url> --enumerate v </code></pre>
+  </div>
+
+  <h3>ix) Saving output in different formats</h3>
+  <div class="code-box">
+    <button class="copy-btn">Copy</button>
+    <pre><code>wpscan --url <target-url> --output <output-file> --format <format> </code></pre>
+      <p class="tool-note">
+    We output the file into any formats like JSON, CLI, XML.
+  </p>
+      
+  </div>
+
+</section>
+
+<section id="conclusion">
+  <h2>Conclusion</h2>
+  <p>
+    WPScan remains one of the most effective tools for both offensive and defensive security.
+    It is essential for anyone working in web security, penetration testing, or bug bounty hunting.
+  </p>
+</section>
+
+</main>
+
+<footer>
+  <p>&copy; 2025 CybxrGhoul</p>
+</footer>
+
+<script>
+document.querySelectorAll(".copy-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    const code = button.nextElementSibling.innerText;
+
+    navigator.clipboard.writeText(code).then(() => {
+      button.innerText = "Copied!";
+      setTimeout(() => {
+        button.innerText = "Copy";
+      }, 1500);
+    });
+  });
+});
+</script>
+
+<div id="image-modal" class="image-modal">
+  <span class="image-modal-close">&times;</span>
+  <img class="image-modal-content" id="modal-img">
+</div>
+
+<script>
+const modal = document.getElementById("image-modal");
+const modalImg = document.getElementById("modal-img");
+const closeBtn = document.querySelector(".image-modal-close");
+
+document.querySelectorAll(".writeup-screenshot img, .writeup-image img").forEach(img => {
+  img.style.cursor = "zoom-in";
+
+  img.addEventListener("click", () => {
+    modal.style.display = "flex";
+    modalImg.src = img.src;
+    modalImg.alt = img.alt;
+  });
+});
+
+closeBtn.onclick = () => {
+  modal.style.display = "none";
+};
+
+modal.onclick = (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+};
+</script>
+
+</body>
+</html>
